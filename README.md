@@ -8,6 +8,33 @@ Node.js (v18+ recommended)
 npm or yarn
 
 Git
+1️⃣ Create Database in phpmyadmin
+```
+CREATE DATABASE task_manager;
+USE task_manager;
+```
+2️⃣Employee Table
+```
+CREATE TABLE employees (
+    id VARCHAR(255) NOT NULL PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('admin','employee') DEFAULT 'employee'
+);
+```
+3️⃣ Tasks Table
+```
+CREATE TABLE tasks (
+    id VARCHAR(255) NOT NULL PRIMARY KEY,
+    title VARCHAR(200),
+    description TEXT,
+    status ENUM('pending','in progress','complete') DEFAULT 'pending',
+    assigned_user VARCHAR(255),
+    created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (assigned_user) REFERENCES employees(id)
+);
+```
 
 🔧 Backend Setup
 1️⃣ Clone the repository
